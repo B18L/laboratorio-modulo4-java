@@ -1,4 +1,19 @@
 package com.axity.dinosaurpark.model;
 
-public class CarnivoreDinosaur {
+public class CarnivoreDinosaur extends Dinosaur {
+
+    public CarnivoreDinosaur(int id, String name, String species) {
+        // Pasa los datos al constructor de Dinosaur. Costo diario: 500.0
+        super(id, name, species, 500.0);
+    }
+
+    @Override
+    public String getDiet() {
+        return "CARNIVORE";
+    }
+
+    @Override
+    public double getDangerLevel() {
+        return 0.9; // ¡PELIGRO ALTO!
+    }
 }

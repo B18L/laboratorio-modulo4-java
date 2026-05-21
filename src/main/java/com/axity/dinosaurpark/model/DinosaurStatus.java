@@ -1,4 +1,7 @@
 package com.axity.dinosaurpark.model;
 
-public class DinosaurStatus {
+public enum DinosaurStatus {
+    IN_ENCLOSURE,
+    ESCAPED,
+    RECAPTURED
 }

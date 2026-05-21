@@ -1,4 +1,8 @@
 package com.axity.dinosaurpark.model;
 
-public class TouristStatus {
+public enum TouristStatus {
+    WAITING,
+    IN_PARK,
+    ATTACKED,
+    EXITED
 }
