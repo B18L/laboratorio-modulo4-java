@@ -14,10 +14,10 @@ public class Technician extends Worker {
         return "TECHNICIAN";
     }
 
-    // Si la planta está caída, la repara de inmediato
+    // Si la planta está caída, la repara de inmediato relacionado al POwerPlant
     public void repairIfNeeded(PowerPlant plant) {
-        //if (!plant.isOperational()) {
-        //    plant.repair();
-        //}
+        if (!plant.isOperational()) {
+            plant.repair();
+        }
     }
 }
