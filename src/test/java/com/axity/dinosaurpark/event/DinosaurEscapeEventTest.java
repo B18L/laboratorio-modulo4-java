@@ -21,7 +21,7 @@ public class DinosaurEscapeEventTest {
         event.execute(mockState, new Random());
 
         // Assert
-        // Verifica que se haya intentado registrar el evento si el escritor existe
+        // Verificar que se haya intentado registrar el evento si el escritor existe
         verify(mockState, atLeastOnce()).getCsvWriter();
     }
 }

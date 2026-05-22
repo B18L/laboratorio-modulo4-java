@@ -7,7 +7,7 @@ class DinosaurTest {
     @Test
     void testStatusChanges() {
         // Crear una instancia de prueba o mock
-        Dinosaur d = new HerbivoreDinosaur(1, "Rex", "T-Rex", 100.0);
+        Dinosaur d = new HerbivoreDinosaur(1, "Rex", "T-Rex");
 
         d.escape();
         assertEquals(DinosaurStatus.ESCAPED, d.getStatus());
