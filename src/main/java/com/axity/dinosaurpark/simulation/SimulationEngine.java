@@ -1,46 +1,63 @@
 package com.axity.dinosaurpark.simulation;
 
+import com.axity.dinosaurpark.config.ParkConfig;
+import com.axity.dinosaurpark.model.Tourist;
 import com.axity.dinosaurpark.monitoring.ParkMonitoring;
 import com.axity.dinosaurpark.persistence.CsvWriter;
+import com.axity.dinosaurpark.zone.ArrivalZone;
 import com.axity.dinosaurpark.zone.PowerPlant;
-import com.axity.dinosaurpark.monitoring.ParkMonitoring;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SimulationEngine {
     private final ParkState state;
     private final EventScheduler scheduler;
     private final int totalSteps;
+    private final ArrivalZone arrivalZone;
+    private final int batchSize;
+    private final List<Tourist> activeTourists;
 
-    public SimulationEngine(long seed, int totalSteps) {
-        this.totalSteps = totalSteps;
-        // Aquí estamos pasando los 3 argumentos que el constructor de arriba espera:
-        // Sustituye tu línea actual por esta:
+    public SimulationEngine(ParkConfig config) {
+        this.totalSteps = config.getTotalSteps();
+        this.batchSize = config.getArrivalBatchSize();
+        this.activeTourists = new ArrayList<>();
+        this.arrivalZone = new ArrivalZone(config.getArrivalMaxCapacity());
+
+        // Inicialización del estado
         this.state = new ParkState(
-                new CsvWriter("ruta/donde/guardar/tu/archivo.csv"), // Le damos el string que pide
-                new PowerPlant(100.0, 5.0, 0.01),  // Le damos los 3 números que pide
-                seed                                                // La semilla
+                new CsvWriter(config.getOutputDirectory()),
+                new PowerPlant(config.getPowerPlantInitialEnergy(), config.getPowerPlantConsumption(), config.getPowerPlantFailureProb()),
+                config.getSeed()
         );
-        this.scheduler = new EventScheduler(seed, totalSteps);
+
+        this.scheduler = new EventScheduler(config.getSeed(), config.getTotalSteps());
     }
 
     public void run() {
         for (int step = 0; step < totalSteps; step++) {
             state.incrementStep();
 
-            // A. LLEGADAS (Aquí llamarías a tu zona de llegada)
-            // arrivalZone.processBatch(batchSize, state.getCsvWriter());
+            // A. LLEGADAS
+            // Ahora llama al método corregido que devuelve List<Tourist>
+            List<Tourist> arrived = arrivalZone.processBatch(batchSize, state.getCsvWriter());
+            activeTourists.addAll(arrived);
 
             // B. MOVIMIENTO DE TURISTAS
-            // Lógica de movimiento en zonas...
+            // Aquí llamarás a los métodos de tus otras zonas (CentralHub, etc.)
+            for (Tourist t : activeTourists) {
+                // Lógica de movimiento pendiente de implementar según tus zonas
+            }
 
             // C. TICKS DE ZONAS
             state.getPowerPlant().tick(state.getRng(), state.getCsvWriter());
 
-            // D. EVENTO (El motor pregunta al scheduler si hay algo hoy)
+            // D. EVENTO
             scheduler.checkForEvent(step).ifPresent(e -> e.execute(state, state.getRng()));
 
             // E. WORKERS
-            // Lógica de guardias y técnicos...
+            // Aquí implementarás la lógica de guardias y técnicos
+            // guards.forEach(g -> g.recaptureEscapedDinosaurs(dinosaurs));
+            // technicians.forEach(t -> t.repairIfNeeded(state.getPowerPlant()));
 
             // F. MONITOREO
             ParkMonitoring.displaySnapshot(state);

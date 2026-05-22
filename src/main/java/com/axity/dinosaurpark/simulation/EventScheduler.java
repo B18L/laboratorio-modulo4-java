@@ -21,14 +21,13 @@ public class EventScheduler {
         // Inicializar el objeto Random con la semilla fija obligatoria
         Random rng = new Random(seed);
 
-        // Si la simulación es muy corta, evitamos errores de rango
         if (totalSteps > 5) {
-            // Sorteamos un paso aleatorio para cada uno de nuestros 3 eventos de la Fase 4
+            // Sortea un paso aleatorio para cada uno de los 3 eventos de la Fase 4 (eventos)
             int stepApagon = rng.nextInt(totalSteps);
             int stepTormenta = rng.nextInt(totalSteps);
             int stepEscape = rng.nextInt(totalSteps);
 
-            // Los registramos en el mapa "Minuto/Paso -> Evento"
+            // Registra en el mapa "Minuto/Paso -> Evento"
             scheduledEvents.put(stepApagon, new BlackoutEvent());
             scheduledEvents.put(stepTormenta, new StormEvent());
             scheduledEvents.put(stepEscape, new DinosaurEscapeEvent());
