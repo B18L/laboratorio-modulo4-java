@@ -9,6 +9,7 @@ import com.axity.dinosaurpark.model.DinosaurStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ParkState {
 
@@ -19,13 +20,15 @@ public class ParkState {
     private double totalRevenue;
     private double totalExpenses;
     private int currentStep;
+    private final Random rng;
 
     // Constructor base que utilizará el SimulationEngine
-    public ParkState(CsvWriter csvWriter, PowerPlant powerPlant) {
+    public ParkState(CsvWriter csvWriter, PowerPlant powerPlant, long seed) {
         this.csvWriter = csvWriter;
         this.powerPlant = powerPlant;
         this.tourists = new ArrayList<>();
         this.dinosaurs = new ArrayList<>();
+        this.rng = new Random(seed);
         this.totalRevenue = 0.0;
         this.totalExpenses = 0.0;
         this.currentStep = 0;
@@ -49,6 +52,10 @@ public class ParkState {
 
     public int getCurrentStep() {
         return currentStep;
+    }
+
+    public Random getRng() {
+        return this.rng;
     }
 
     public int countActiveTourists() {

@@ -35,7 +35,7 @@ public class PowerPlant {
         System.out.println("Planta de energía: Consumiendo " + energyConsumptionPerTick + " unidades. Energía disponible: " + currentEnergy);
 
         // 2. Verificar si ocurre una falla aleatoria (Apagón en este caso)
-        // Usamos el mismo truco determinista del Random con la semilla
+        // Usar el truco determinista del Random con la semilla
         if (random.nextDouble() < failureProbability) {
             triggerFailure(csvWriter);
         }
@@ -69,5 +69,9 @@ public class PowerPlant {
 
     public double getMaxEnergy() {
         return maxEnergy;
+    }
+
+    public double getEnergyLevel() {
+        return this.currentEnergy;
     }
 }
