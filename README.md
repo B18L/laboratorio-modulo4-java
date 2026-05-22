@@ -35,4 +35,19 @@ Arquitectura de Eventos: Aplica el patrón de diseño Strategy a través de la i
 
 El sistema registra el historial de operaciones y gastos de mantenimiento mediante un módulo de persistencia en tiempo real, lo que permite un monitoreo detallado del estado del parque durante cada paso (step) de la simulación.
 
-Comentarios...(se añadirán cerca del final)
+
+
+
+
+
+
+
+**Comentarios finales.
+Los ultimos minutos que pasaron de las 12 fue porque olvidaba que estaba en otra rama, así que cuando me dí cuenta ya superaba la hora pero no por mucho.
+Tuve muchos problemas al ejecutar mvn test porque me marcaba algun error de la version o de jacoco o de mockito, hice varios cambios pero no pude solucionarlo
+y tampoco supe al 100% la razón. Iban desde las versiones de las dependencias, hasta que mi java --version era Java 25 el que tenia instalado y me queria a obligar
+a instalar otra version como 17 o 21 cuando en el pom lo especifiqué así que no supe la razón ya que no había tenido este problema antes.
+Se hizo lo que se pudo :D, una muy buena prueba, me quedo de tarea lo que quedó pendiente.
+
+Muchas gracias por todo!!! Este curso ha sido maravilloso así como los involucrados, desde los profesores, hasta el presonal involucrado. Aprendí muchísimo, incluso durante el examen y me emociona saber que aún me falta mucho por aprender!!! Saludos!!!
+
