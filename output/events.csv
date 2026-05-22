@@ -1,0 +1,4 @@
+step,eventName,description,affectedEntities,timestamp
+31,APAGON_MASIVO,"Falla general en los generadores principales del parque.","PowerPlant",2026-05-21T22:48:27.614576900
+49,ESCAPE_DINOSAURIO,"¡Alerta roja! Un dinosaurio ha roto la seguridad de su encierro. ¡Sálvese quien pueda!","Encierros y Turistas",2026-05-21T22:48:27.623576300
+64,TORMENTA_TORRENCIAL,"Lluvia severa que obliga a evacuar las atracciones del parque.","Parque Completo",2026-05-21T22:48:27.625580

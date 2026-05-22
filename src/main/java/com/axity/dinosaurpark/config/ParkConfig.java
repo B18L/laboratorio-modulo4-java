@@ -72,4 +72,28 @@ public class ParkConfig {
     public static void resetForTesting() {
         instance = null;
     }
+
+    public int getArrivalBatchSize() {
+        return getInt("arrival.batchSize", 5);
+    }
+
+    public int getArrivalMaxCapacity() {
+        return getInt("arrival.maxCapacity", 50);
+    }
+
+    public String getOutputDirectory() {
+        return getString("output.directory", "data");
+    }
+
+    public double getPowerPlantInitialEnergy() {
+        return getDouble("powerPlant.initialEnergy", 100.0);
+    }
+
+    public double getPowerPlantConsumption() {
+        return getDouble("powerPlant.consumption", 10.0);
+    }
+
+    public double getPowerPlantFailureProb() {
+        return getDouble("powerPlant.failureProb", 0.05);
+    }
 }

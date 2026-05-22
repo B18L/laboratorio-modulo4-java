@@ -38,14 +38,14 @@ public class SimulationEngine {
             state.incrementStep();
 
             // A. LLEGADAS
-            // Ahora llama al método corregido que devuelve List<Tourist>
+            // Llama al método corregido que devuelve List<Tourist>
             List<Tourist> arrived = arrivalZone.processBatch(batchSize, state.getCsvWriter());
             activeTourists.addAll(arrived);
 
             // B. MOVIMIENTO DE TURISTAS
-            // Aquí llamarás a los métodos de tus otras zonas (CentralHub, etc.)
+            // Llama a los métodos de otras zonas (CentralHub, etc.)
             for (Tourist t : activeTourists) {
-                // Lógica de movimiento pendiente de implementar según tus zonas
+                // Lógica de movimiento pendiente de implementar si es posible
             }
 
             // C. TICKS DE ZONAS
@@ -55,7 +55,7 @@ public class SimulationEngine {
             scheduler.checkForEvent(step).ifPresent(e -> e.execute(state, state.getRng()));
 
             // E. WORKERS
-            // Aquí implementarás la lógica de guardias y técnicos
+            // Lógica de guardias y técnicos
             // guards.forEach(g -> g.recaptureEscapedDinosaurs(dinosaurs));
             // technicians.forEach(t -> t.repairIfNeeded(state.getPowerPlant()));
 

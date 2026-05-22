@@ -1,5 +1,6 @@
 package com.axity.dinosaurpark.zone;
 
+import com.axity.dinosaurpark.persistence.CsvWriter;
 import com.axity.dinosaurpark.model.Tourist;
 import com.axity.dinosaurpark.model.TouristStatus;
 import java.util.ArrayList;
@@ -50,16 +51,20 @@ public class ArrivalZone implements ParkZone {
     }
 
     // Método propio de ArrivalZone
-    public void processBatch(int batchSize, Object csvWriter) {
+    public List<Tourist> processBatch(int batchSize, Object csvWriter) {
+        List<Tourist> processedTourists = new ArrayList<>();
         int processed = 0;
 
         while (processed < batchSize && !touristsInZone.isEmpty()) {
             Tourist tourist = touristsInZone.get(0);
             tourist.setStatus(TouristStatus.IN_PARK);
             exit(tourist);
+
+            processedTourists.add(tourist);
             processed++;
         }
 
         System.out.println("La cantidad de turistas al llegar al parque fue de " + processed + " turistas en el arribo.");
+        return processedTourists;
     }
 }
